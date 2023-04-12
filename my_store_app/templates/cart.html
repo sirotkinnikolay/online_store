@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="Middle Middle_top">
+        <div class="Section">
+            <div class="wrap">
+                <form class="form Cart" action="/count_plus/" method="post">
+                    {% csrf_token %}
+                    {% for product, enroll in cart %}
+                    <div class="Cart-product">
+                        <div class="Cart-block Cart-block_row">
+                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="/product/{{product.id}}/"><img class="Cart-img" src="{{product.product_picture.url}}"></a>
+                            </div>
+                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="/product/{{product.id}}/">{{product.title}}</a>
+                                <div class="Cart-desc">{{product.description}}
+                                </div>
+                            </div>
+                            <div class="Cart-block Cart-block_price">
+                                <div class="Cart-price">{{product.price}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Cart-block Cart-block_row">
+                            <div class="Cart-block Cart-block_seller">
+                                <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
+                            </div>
+                            <div class="Cart-block Cart-block_amount">
+                                <div class="Cart-amount">
+                                    <div class="Amount">
+                                        <button class="Amount-remove" type="button">
+                                        </button>
+                                        <input class="Amount-input form-input" name="amount" type="text" value="{{enroll.product_count}}" />
+                                        <button class="Amount-add" type="button">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Cart-block Cart-block_delete"><a class="Cart-delete" href="/cart/delete/?q=del-{{product.id}}"><img src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="Cart-total">
+                        <div class="Cart-block Cart-block_total">
+                            <strong class="Cart-title">Итого:
+                            </strong><span class="Cart-price">{{total_price_cart}} рублей</span>
+                        </div>
+                        {% if total_price_cart != 0 %}
+                        <div class="Cart-block">
+                        <input type="submit" class="btn btn_success btn_lg" value="Оформить">
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

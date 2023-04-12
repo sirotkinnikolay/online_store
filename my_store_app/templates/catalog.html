@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="Middle Middle_top">
+        <div class="Section Section_column Section_columnLeft">
+            <div class="wrap">
+                <div class="Section-column">
+                    <div class="Section-columnSection">
+                        <header class="Section-header">
+                            <strong class="Section-title">Фильтр
+                            </strong>
+                        </header>
+                        <div class="Section-columnContent">
+                            <form class="form" action="/filter_catalog/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="range Section-columnRange">
+                                        <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="1" data-max="200000" data-from="0" data-to="200000" />
+                                        <div class="range-price">Цена:
+                                            <div class="rangePrice">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-input form-input_full" id="title" name="title" type="text" placeholder="Название" />
+                                </div>
+                                <div class="form-group">
+                                    <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle">
+                                        <input type="checkbox"  name="chb1"/><span class="toggle-box"></span><span class="toggle-text">Только товары в наличии</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle">
+                                        <input type="checkbox" name="chb2"/><span class="toggle-box"></span><span class="toggle-text">С бесплатной доставкой</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="buttons"><input type="submit" class="btn btn_square btn_dark btn_narrow" value="Фильтр">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="Section-columnSection">
+                        <header class="Section-header">
+                            <strong class="Section-title">Популярные тэги
+                            </strong>
+                        </header>
+                        <div class="Section-columnContent">
+                            <div class="buttons">
+                                {% for tag in tags %}
+                                <a class="btn btn_default btn_sm" href="/catalog/?q={{tag}}-tag">#{{tag}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-content">
+                    <div class="Sort">
+                        <div class="Sort-title">Сортировать по:
+                        </div>
+                        <div class="Sort-variants">
+                            <a class="Sort-sortBy Sort-sortBy_dec" href="/catalog/?q=1">Популярности</a>
+                            <a class="Sort-sortBy" href="/catalog/?q=2">Цене</a>
+                            <a class="Sort-sortBy" href="/catalog/?q=3">Отзывам</a>
+                            <a class="Sort-sortBy Sort-sortBy_inc" href="/catalog/?q=4">Новизне</a>
+                        </div>
+                    </div>
+                    <div class="Cards">
+                        {% for prod in products%}
+                        <div class="Card"><a class="Card-picture" href="/product/{{prod.id}}/"><img src="{{prod.product_picture.url}}"></a>
+                            <div class="Card-content">
+                                <strong class="Card-title"><a href="/product/{{prod.id}}/">{{prod.title}}</a>
+                                </strong>
+                                <strong class="Card-title"><a href="/add_comparison/?q={{prod.id}}">сравнить</a>
+                                </strong>
+                                <div class="Card-description">
+                                    <div class="Card-cost"><span class="Card-price">{{prod.price}}</span>
+                                    </div>
+                                    <div class="Card-category">{{prod.category}}
+                                    </div>
+                                    <div class="Card-hover"><a class="Card-btn" href="/cart/add/?q={{prod.id}}"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor%}
+                    </div>
+                    <div class="Pagination">
+                        <div class="Pagination-ins"><a class="Pagination-element Pagination-element_prev" href="#"><img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg" /></a><a class="Pagination-element Pagination-element_current" href="#"><span class="Pagination-text">1</span></a><a class="Pagination-element" href="#"><span class="Pagination-text">2</span></a><a class="Pagination-element" href="#"><span class="Pagination-text">3</span></a><a class="Pagination-element Pagination-element_prev" href="#"><img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
+
+
+
