@@ -18,14 +18,15 @@ python manage.py createsuperuser
 
 ``для входа на локальном сервере введите в адресную строку http://127.0.0.1:8000/ ``
 
-![img_3.png](img_3.png)
+![img_3.png](screenshots/screenshot3.png)
 
 ``для входа в панель администратора введите в адресную строку http://127.0.0.1:8000/admin``
 
+
 ``введите логин и пароль созданный при создании суперпользователя ``
 
-![img_4.png](img_4.png)
-![img.png](img.png)
+![file2.png](screenshots/screenshot1.png)
+![file3.png](screenshots/screenshot2.png)
 
 - ###Шапка сайта 
 состоит из ссылок на соцсети, ссылок на регистрацию и
