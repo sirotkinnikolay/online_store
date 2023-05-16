@@ -16,6 +16,9 @@ python manage.py loaddata fixtures/online.json
 ``создайте суперпользователя,  введите логин и пароль для администратора ``\
 python manage.py createsuperuser
 
+``запустите приложение``\
+python manage.py runserver
+
 ``для входа на локальном сервере введите в адресную строку http://127.0.0.1:8000/ ``
 
 ![img_3.png](screenshots/screenshot3.png)
